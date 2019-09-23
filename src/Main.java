@@ -1,4 +1,4 @@
-import java.util.Queue;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,6 +14,10 @@ public class Main {
         int[] carol = {1, 2, 3, 4, 0};
         int[] daenerys = {1, 4, 3, 2, 0};
         int[] emma = {2, 1, 4, 0, 3};
+        int[][] women = {ariel, betty, carol, daenerys, emma};
+
+        // Women's availability
+        int[] womenAvailability = {5, 5, 5, 5, 5};
 
         // Men's preferences
         int[] vivaldi = {0, 3, 2, 1, 4};
@@ -21,16 +25,45 @@ public class Main {
         int[] yuri = {1, 3, 0, 4, 2};
         int[] wolverine = {2, 0, 1, 3, 4};
         int[] zerq = {4, 1, 0, 3, 2};
+        int[][] men = {vivaldi, xavi, yuri, wolverine, zerq};
 
+        // Women preferences are swapped with their indexes for future conveniences
         int[] arielInverse = inverser(ariel);
         int[] bettyInverse = inverser(betty);
         int[] carolInverse = inverser(carol);
         int[] daenerysInverse = inverser(daenerys);
         int[] emmaInverse = inverser(emma);
+        int[][] womenInverse = {arielInverse, bettyInverse, carolInverse, daenerysInverse, emmaInverse};
 
-        for (int i = 0; i < arielInverse.length; i++) {
-            System.out.println(arielInverse[i]);
+        Stack<Integer> proposeStack = new Stack<>();
+
+        proposeStack.push(4);
+        proposeStack.push(3);
+        proposeStack.push(2);
+        proposeStack.push(1);
+        proposeStack.push(0);
+
+        while (!proposeStack.empty()) {
+            int currentMan = proposeStack.pop();
+        
+            for (int i = 0; i < vivaldi.length; i++) {
+                if (womenAvailability[men[currentMan][i]] == 5) {
+                    womenAvailability[men[currentMan][i]] = currentMan;
+                }
+
+                else if (womenInverse[men[currentMan][i]][currentMan] < womenAvailability[men[currentMan][i]]) {
+                    int dumpedMan = womenAvailability[men[currentMan][i]];
+                    womenAvailability[men[currentMan][i]] = currentMan;
+
+                    proposeStack.push(dumpedMan);
+                }
+            }
         }
+
+        for (int i : womenAvailability) {
+            System.out.println(i);
+        }
+
     }
 
     public static int[] inverser(int[] array) {
@@ -40,7 +73,6 @@ public class Main {
 
         for (int i = 0; i < array.length; i++) {
             array[oldArray[i]] = i;
-            System.out.println("oldArray Values " + oldArray[i]);
         }
 
         return array;
