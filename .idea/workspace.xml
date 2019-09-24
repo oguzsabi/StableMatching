@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38ad383d-b841-4364-8b54-24b7f48dc4db" name="Default Changelist" comment="" />
+    <list default="true" id="38ad383d-b841-4364-8b54-24b7f48dc4db" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +44,7 @@
       <option name="presentableId" value="Default" />
       <updated>1569258103045</updated>
       <workItem from="1569258104541" duration="2682000" />
+      <workItem from="1569346809710" duration="6000" />
     </task>
     <servers />
   </component>
@@ -53,7 +56,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

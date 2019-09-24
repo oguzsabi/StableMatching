@@ -48,33 +48,37 @@ public class Main {
         
             for (int i = 0; i < vivaldi.length; i++) {
                 if (womenAvailability[men[currentMan][i]] == 5) {
-                    womenAvailability[men[currentMan][i]] = currentMan;
+                    womenAvailability[men[currentMan][i]] = womenInverse[men[currentMan][i]][currentMan];
+                    break;
                 }
 
                 else if (womenInverse[men[currentMan][i]][currentMan] < womenAvailability[men[currentMan][i]]) {
-                    int dumpedMan = womenAvailability[men[currentMan][i]];
-                    womenAvailability[men[currentMan][i]] = currentMan;
+                    int dumpedMan = women[men[currentMan][i]][womenAvailability[men[currentMan][i]]];
+                    womenAvailability[men[currentMan][i]] = womenInverse[men[currentMan][i]][currentMan];
 
                     proposeStack.push(dumpedMan);
+                    break;
                 }
             }
         }
 
-        for (int i : womenAvailability) {
-            System.out.println(i);
+        int i = 0;
+        for (int x : womenAvailability) {
+            System.out.println(wife[i] + " marries with " + husband[women[i][x]]);
+            i++;
         }
 
     }
 
     public static int[] inverser(int[] array) {
-        int[] oldArray = new int[5];
+        int[] inversedArray = new int[5];
 
-        System.arraycopy(array, 0, oldArray, 0, array.length);
+        System.arraycopy(array, 0, inversedArray, 0, array.length);
 
         for (int i = 0; i < array.length; i++) {
-            array[oldArray[i]] = i;
+            inversedArray[array[i]] = i;
         }
 
-        return array;
+        return inversedArray;
     }
 }
